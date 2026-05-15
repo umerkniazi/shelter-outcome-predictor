@@ -48,4 +48,12 @@ if st.button("Predict"):
     proba_df = pd.DataFrame({'Outcome': model.classes_, 'Probability': proba}).sort_values('Probability', ascending=False)
 
     st.subheader(f"Predicted Outcome: {prediction}")
+
+    if prediction == 'Euthanasia':
+        st.error("This animal may be at risk. Consider prioritizing outreach or transfer to a rescue partner.")
+    elif prediction == 'Adoption':
+        st.success("This animal has a strong chance of adoption.")
+    else:
+        st.info("This animal is likely to be transferred to a partner shelter.")
+
     st.bar_chart(proba_df.set_index('Outcome'))
