@@ -1,6 +1,11 @@
+import os
 import streamlit as st
 import pandas as pd
 import joblib
+
+if not os.path.exists('models/shelter_model.pkl'):
+    import train
+    train.train()
 
 model = joblib.load('models/shelter_model.pkl')
 feature_columns = joblib.load('models/feature_columns.pkl')
